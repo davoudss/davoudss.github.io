@@ -151,7 +151,7 @@ for(i=0;i<=MAX;i+=2)
 ---
 # AVX Instructions
 ```C
-include <x86intrin.h>
+#include <x86intrin.h>
 ```
 
 * __m256x
