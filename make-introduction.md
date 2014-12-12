@@ -19,7 +19,7 @@ Building software with make
 Automation of repetitive work
 -----------------------------
 <p>&nbsp;</p>
-Michael Schliephake, 2014-12-03
+Davoud Saffar , 2014-12-03
 
 .footnote[
 Navigate with arrow keys&nbsp;&nbsp;<-&nbsp;&nbsp;->]
