@@ -63,8 +63,8 @@ int sum_unrolled( int n, int *a ){
     return sum;
 }
 ```
-
-## SSE instructions
+---
+## SSE Instructions
 * Check capability of the CPU
   * on linux: cat /proc/cpuinfo | grep 'sse*'
   * on mac:   sysctl machdep.cpu.features
@@ -74,16 +74,18 @@ int sum_unrolled( int n, int *a ){
 </center>
 
 ---
-## Now with SSE
+## SSE Instructions
 *navie.c*
 ```C
 for(i=0;i<=MAX;i++)
   c[i]=a[i]+b[i];
 ```
+* Without SSE
 <center>
 <img src="nosse.png" width="60%"/>
 </center>
 
+* With SSE
 <center>
 <img src="withsse.png" width="60%"/>
 </center>
