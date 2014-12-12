@@ -70,16 +70,17 @@ int sum_unrolled( int n, int *a ){
   * on mac:   sysctl machdep.cpu.features
 
 <center>
-<img src="sse2.png" width="60%"/>
+<img src="sse2.png" width="70%"/>
 </center>
 
----
-## SSE Instructions
 *navie.c*
 ```C
 for(i=0;i<=MAX;i++)
   c[i]=a[i]+b[i];
 ```
+
+---
+## SSE Instructions
 * Without SSE
 <center>
 <img src="nosse.png" width="60%"/>
@@ -97,6 +98,7 @@ for(i=0;i<=MAX;i++)
 ```C
 #include emmintrin.h
 ```
+
 **Data Types**
 * __m128i
 * __m128  = {float f3, f2, f1, f0}
@@ -149,14 +151,19 @@ for(i=0;i<=MAX;i+=2)
 
 ---
 # AVX Instructions
-* include <x86intrin.h>
+```C
+include <x86intrin.h>
+```
+
 * __m256x
 * _mm256_add_pd
+
 *navie.c*
 ```C
 for(i=0;i<=MAX;i++)
   c[i]=a[i]+b[i];
 ```
+
 *avx_inst.c*
 ```C
 double *a = _mm_malloc(MAX,32);
@@ -177,12 +184,17 @@ for(i=0;i<=MAX;i+=4)
 ## Compiler flags
 * At least -O2
 * -msse, -mavx
+
 ```bash
-* $ gcc -Wall -O3 -msse -o name name.c
+$ gcc -Wall -O3 -msse -o name name.c
 ```
 
 ### Further readings
-* SSE and AVX. [https://software.intel.com/sites/landingpage/IntrinsicsGuide/](https://software.intel.com/sites/landingpage/IntrinsicsGuide/)
+* SSE and AVX. 
+[https://software.intel.com/sites/landingpage/IntrinsicsGuide/](https://software.intel.com/sites/landingpage/IntrinsicsGuide/)
 
-* SSE Data Types. [http://msdn.microsoft.com/en-us/library/cc953fe1%28v=vs.90%29.aspx](http://msdn.microsoft.com/en-us/library/cc953fe1%28v=vs.90%29.aspx)
-* Arithmatic Operations. [http://msdn.microsoft.com/en-us/library/4atda1f2%28v=vs.90%29.aspx](http://msdn.microsoft.com/en-us/library/4atda1f2%28v=vs.90%29.aspx)
+* SSE Data Types. 
+[http://msdn.microsoft.com/en-us/library/cc953fe1%28v=vs.90%29.aspx](http://msdn.microsoft.com/en-us/library/cc953fe1%28v=vs.90%29.aspx)
+
+* Arithmatic Operations. 
+[http://msdn.microsoft.com/en-us/library/4atda1f2%28v=vs.90%29.aspx](http://msdn.microsoft.com/en-us/library/4atda1f2%28v=vs.90%29.aspx)
