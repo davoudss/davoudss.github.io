@@ -94,9 +94,8 @@ for(i=0;i<=MAX;i++)
 
 ---
 ## Types and Instructions
-* Add 
 ```C
-#include emmintrin.h
+#include <emmintrin.h>
 ```
 
 **Data Types**
@@ -156,7 +155,7 @@ include <x86intrin.h>
 ```
 
 * __m256x
-* _mm256_add_pd
+* _mm256_add_px
 
 *navie.c*
 ```C
