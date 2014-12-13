@@ -13,10 +13,10 @@ layout: true
 name: title
 template: title-slide
 
-Using SSE and AVX Instructions
+A short guid to Vectorization
 ===========================
 <p>&nbsp;</p>
-To accelerate codes
+Auto-vectorization, SSE and AVX instructions
 -----------------------------
 <p>&nbsp;</p>
 Davoud Saffar, 2014-12-21
