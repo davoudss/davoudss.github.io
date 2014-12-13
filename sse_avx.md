@@ -13,10 +13,10 @@ layout: true
 name: title
 template: title-slide
 
-Using SSE and AVX intrinsics
+Using SSE and AVX Instructions
 ===========================
 <p>&nbsp;</p>
-To write fast codes
+To accelerate codes
 -----------------------------
 <p>&nbsp;</p>
 Davoud Saffar, 2014-12-21
@@ -27,9 +27,9 @@ Navigate with arrow keys&nbsp;&nbsp;<-&nbsp;&nbsp;->]
 ## Outline
 
 * Introduction
-* Compiler Vectorization
-* SSE
-* AVX
+* Loop Unrolling
+* SSE Instructions
+* AVX Instructions
 
 ---
 ## Introduction
@@ -57,7 +57,7 @@ int sum_unrolled( int n, int *a ){
         sum += a[i+2];
         sum += a[i+3];
        }
-    for( int i = n/4*4; i < n; i++ )   
+    for( int i = n/4*4; i < n; i++ )
        sum += a[i];
 
     return sum;
@@ -149,7 +149,7 @@ for(i=0;i<=MAX;i+=2)
 ```
 
 ---
-# AVX Instructions
+## AVX Instructions
 ```C
 #include <x86intrin.h>
 ```
@@ -170,8 +170,7 @@ double *b = _mm_malloc(MAX,32);
 double *c = _mm_malloc(MAX,32);
 
 __m256d sA, sB, sC;
-for(i=0;i<=MAX;i+=4)
-{
+for(i=0;i<=MAX;i+=4){
   sA = _mm256_load_pd( a+i );
   sB = _mm256_load_pd( b+i );
   sC = _mm256_add_pd( sA, sB );
