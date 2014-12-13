@@ -128,267 +128,204 @@
         
     </script>
     <textarea id="source">
-name: inverse
-layout: true
+name: title-slide
 class: center, middle, inverse
+layout: true
+---
+name: section-slide
+class: left, middle, inverse
+layout: true
+---
+name: default
+class: left, top
+layout: true
+---
+name: title
+template: title-slide
+
+A short guid to Vectorization
+===========================
+<p>&nbsp;</p>
+Auto-vectorization, SSE and AVX instructions
+-----------------------------
+<p>&nbsp;</p>
+Davoud Saffar, 2014-12-21
+
+.footnote[
+Navigate with arrow keys&nbsp;&nbsp;<-&nbsp;&nbsp;->]
+---
+## Outline
+
+* Introduction
+* Loop Unrolling
+* SSE Instructions
+* AVX Instructions
 
 ---
-
-# Profiling and code optimization toolbox
-
-## Rossen Apostolov
-
-PDC Center for High Performance Computing,
-KTH Royal Institute of Technology, Stockholm
+## Introduction
+* Vectorization: Loop unrolling + SIMD instructions
+* Auto Vectorization: 
+  * Enable: -O2 or higher
 
 ---
-
-layout: false
-
-
-## Overview of analysis tools
-
-* Static Code Analyzers
-* Code Sanitizers (dynamic)
-* Debuggers
-* Profilers
-
----
-## Static Code Analyzers
-
-### Analyze the code before compilation or execution
-
-* Analyzers work on different levels:
-	* Unit level
-	* Technology level
-	* System level
-
-#### Many tools; working with different languages; on different levels
-
-##### Example tools:
-
-* Cppcheck
-* Clang
-* PyChecker
-
----
-## Dynamic Code Analizers
-#### Applied at run time after instrumentation
-
-### Clang
-
-Comes with:
-
-* AddressSanitizer (ASan)
-	* fast memory error detector, e.g. buffer overflows, use-after-free, etc.
-	* replaces _malloc_ with own implementation
-	* 2x slowdown
-* ThreadSanitizer (TSan)
-	* detects data races
-	* 5-15x slowdown (still 10x faster than other tools)
-* MemorySanitizer (MSan)
-	* detects uninitialized reads
-* LeakSanitizer
-	* detects leaks
-* DataFlowSanitizer
-	* dynamic data flow analysis
-
-e.g.
-$ clang++ -O1 -fsanitize=address a.cpp
-
----
-### Address Sanitizer in Clang
-asan.cc:
-```cpp
-int global_array[100] = {-1};
-int main (int argc, char ** argv) {
-  return global_array[argc + 100];
+## Loop Unrolling
+```C
+int sum_no_unrolling( int n, int *a ){
+   int sum = 0;
+   for( int i = 0; i < n; i++ )
+       sum += a[i];
+   return sum;
 }
 ```
-Then
-```shell
-rossen@tcbs24:~/temp$ clang++ -O1 asan.cc
-rossen@tcbs24:~/temp$ ./a.out
-rossen@tcbs24:~/temp$
+```C
+int sum_unrolled( int n, int *a ){
+   int sum = 0;
+   for( int i = 0; i < n/4*4; i += 4 )
+      {
+        sum += a[i+0];
+        sum += a[i+1];
+        sum += a[i+2];
+        sum += a[i+3];
+       }
+    for( int i = n/4*4; i < n; i++ )
+       sum += a[i];
+
+    return sum;
+}
 ```
-But
-```
-rossen@tcbs24:~/temp$ clang++ -O1 -fsanitize=address asan.cc
-rossen@tcbs24:~/temp$ ./a.out
-=================================================================
-==14174==ERROR: AddressSanitizer: global-buffer-overflow on address 0x0000006e2b74 at pc 0x0000004b7758 bp 0x7ffff77195e0 sp 0x7ffff77195d8
-READ of size 4 at 0x0000006e2b74 thread T0
-    #0 0x4b7757 in main (/nethome/rossen/temp/a.out+0x4b7757)
-    #1 0x7f8aec37176c in __libc_start_main /build/buildd/eglibc-2.15/csu/libc-start.c:226
-    #2 0x4b7638 in _start (/nethome/rossen/temp/a.out+0x4b7638)
-
-0x0000006e2b74 is located 4 bytes to the right of global variable &#39;global_array&#39; defined in &#39;asan.cc:1:5&#39; (0x6e29e0) of size 400
-SUMMARY: AddressSanitizer: global-buffer-overflow ??:0 main
-Shadow bytes around the buggy address:
-  0x0000800d4510: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-  0x0000800d4520: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-  0x0000800d4530: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-  0x0000800d4540: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-  0x0000800d4550: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-=&gt;0x0000800d4560: 00 00 00 00 00 00 00 00 00 00 00 00 00 00[f9]f9
-  0x0000800d4570: f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 00 00 00 00
-  0x0000800d4580: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-  0x0000800d4590: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-  0x0000800d45a0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-  0x0000800d45b0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-Shadow byte legend (one shadow byte represents 8 application bytes):
-  Addressable:           00
-  Partially addressable: 01 02 03 04 05 06 07
-  Heap left redzone:       fa
-  Heap right redzone:      fb
-  Freed heap region:       fd
-  Stack left redzone:      f1
-  Stack mid redzone:       f2
-  Stack right redzone:     f3
-  Stack partial redzone:   f4
-  Stack after return:      f5
-  Stack use after scope:   f8
-  Global redzone:          f9
-  Global init order:       f6
-  Poisoned by user:        f7
-  Container overflow:      fc
-  Array cookie:            ac
-  ASan internal:           fe
-==14174==ABORTING
-```
-
-* Similarly for stack and heap overflows
-
 ---
+## SSE Instructions
+* Check capability of the CPU
+  * on linux: cat /proc/cpuinfo | grep 'sse*'
+  * on mac:   sysctl machdep.cpu.features
 
-## Dynamic Code Analizers
+<center>
+<img src="sse2.png" width="70%"/>
+</center>
 
-## Valgrind
-
-A framework that comes with:
-
-* Memcheck
-	* Memory leaks, unallocated access etc.
-	* 10-30x times slowdown
-* Cachegrind
-	* Cache profiler, identifies cache misses
-	* 20-100x slowdown
-* Callgrind
-	* extends cachegrind to include call graphs
-* Massif
-	* heap profiler
-	* 20x slowdown
-* Helgrind
-	* detects data races
-* DRD
-	* similar to Helgrind
-
----
-## Debuggers
-
-Allow you to:
-
-* Execute a program one step at a time
-* Stop execution at a given place in the code and examine the state
-* Monitor the values of variables
-* Crack protected software
-
-Often used tools:
-
-* printf - **most** popular!
-* GDB (gcc family)
-* IDB (Intel)
-* Valgrind
-* DDT (powerful, parallel debugger)
-
-
----
-## Profilers
-
-Allow to investigate:
-
-* How much time is spent in a given function?
-* How often a function is being called?
-* How often memory is accessed?
-* How much time is spent for communication (e.g. MPI)?
-* How long the CPU is idling (e.g. waiting for data, network)?
-* What is the overall complexity of the program?
-
-Profiling can be done by instrumenting the source code or a pre-compiled binary.
-
----
-## Profilers
-
-Two kinds:
-
-* #### event-based (tracing) profilers
-	* collect data (traces) for pre-defined events, e.g. entering or leaving functions, allocation of object, communication, disk i/o etc.
-	* modify the code
-	* often give 300-1000% overhead
-		* e.g. small functions that are called many times
-
-* #### statistical (sampling) profilers
-	* collect data at regular intervals, i.e. what is the program doing _right now_?
-
-	* typically 2-10% overhead
-	* not all code is seen
-	* may differ between execution
-	* show bottlenecks in production code
-	* can be used for monitoring over long execution runs
-	* reports on external library functions
-
----
-## Profilers
-
-* gprof
-* extrae/paraver
-* papi
-* tau
-* scalasca
-* vampir
-* apr (Allinea)
-* OProfile
-* HPC toolkit
-* perf tools
-* VTune (Intel)
-* DynInst (dynamic injection of code)
-* MAP (Allinea)
-
----
-
-### Statistical profiling (gprof)
-
-```shell
-Flat profile:
-
-     Each sample counts as 0.01 seconds.
-       %   cumulative   self              self     total
-      time   seconds   seconds    calls  ms/call  ms/call  name
-      33.34      0.02     0.02     7208     0.00     0.00  open
-      16.67      0.03     0.01      244     0.04     0.12  offtime
-      16.67      0.04     0.01        8     1.25     1.25  memccpy
-      16.67      0.05     0.01        7     1.43     1.43  write
-      16.67      0.06     0.01                             mcount
-       0.00      0.06     0.00      236     0.00     0.00  tzset
-       0.00      0.06     0.00      192     0.00     0.00  tolower
-       0.00      0.06     0.00       47     0.00     0.00  strlen
-       0.00      0.06     0.00       45     0.00     0.00  strchr
-       0.00      0.06     0.00        1     0.00    50.00  main
-       0.00      0.06     0.00        1     0.00     0.00  memcpy
-       0.00      0.06     0.00        1     0.00    10.11  print
-       0.00      0.06     0.00        1     0.00     0.00  profil
-       0.00      0.06     0.00        1     0.00    50.00  report
-     ...
+*navie.c*
+```C
+for(i=0;i<=MAX;i++)
+  c[i]=a[i]+b[i];
 ```
 
 ---
+## SSE Instructions
+* Without SSE
+<center>
+<img src="nosse.png" width="60%"/>
+</center>
 
-### Event-based profiling (Paraver)
+* With SSE
+<center>
+<img src="withsse.png" width="60%"/>
+</center>
+* courtesy Intel
 
-&lt;img src=profile.jpg style= width: 400px &gt;
+---
+## Types and Instructions
+```C
+#include <emmintrin.h>
+```
 
+**Data Types**
+* __m128i
+* __m128  = {float f3, f2, f1, f0}
+* __m128d = {double d1, d0}
 
-&lt;img src=image3.jpg style= width: 400px &gt;
+**Memory Allocation**
+* _mm_malloc(a,16)
+* _mm_free(a)
+
+---
+## Types and Instructions
+**Load and store**
+* _mm_load_px
+* _mm_loadu_px
+* _mm_store_px
+* _mm_storeu_px
+
+**Arithmatic**
+* _mm_add_px
+* _mm_mul_px
+* _mm_sub_px
+* _mm_div_px
+
+**Other**
+* _mm_setzero_px
+* _mm_set1_px
+
+---
+## Apply to sample code
+*navie.c*
+```C
+for(i=0;i<=MAX;i++)
+  c[i]=a[i]+b[i];
+```
+*sse_inst.c*
+```C
+double *a = _mm_malloc(MAX,16);
+double *b = _mm_malloc(MAX,16);
+double *c = _mm_malloc(MAX,16);
+
+__m128d sA, sB, sC;
+for(i=0;i<=MAX;i+=2)
+{
+  sA = _mm_load_pd( a+i );
+  sB = _mm_load_pd( b+i );
+  sC = _mm_add_pd( sA, sB );
+  _mm_store_pd( c+i , sC );
+}
+```
+
+---
+## AVX Instructions
+```C
+#include <x86intrin.h>
+```
+
+* __m256x
+* _mm256_add_px
+
+*navie.c*
+```C
+for(i=0;i<=MAX;i++)
+  c[i]=a[i]+b[i];
+```
+
+*avx_inst.c*
+```C
+double *a = _mm_malloc(MAX,32);
+double *b = _mm_malloc(MAX,32);
+double *c = _mm_malloc(MAX,32);
+
+__m256d sA, sB, sC;
+for(i=0;i<=MAX;i+=4){
+  sA = _mm256_load_pd( a+i );
+  sB = _mm256_load_pd( b+i );
+  sC = _mm256_add_pd( sA, sB );
+  _mm256_store_pd( c+i , sC );
+}
+```
+
+---
+## Compiler flags
+* At least -O2
+* -msse, -mavx
+
+```bash
+$ gcc -Wall -O3 -msse -o name name.c
+```
+
+### Further readings
+* SSE and AVX. 
+[https://software.intel.com/sites/landingpage/IntrinsicsGuide/](https://software.intel.com/sites/landingpage/IntrinsicsGuide/)
+
+* SSE Data Types. 
+[http://msdn.microsoft.com/en-us/library/cc953fe1%28v=vs.90%29.aspx](http://msdn.microsoft.com/en-us/library/cc953fe1%28v=vs.90%29.aspx)
+
+* Arithmatic Operations. 
+[http://msdn.microsoft.com/en-us/library/4atda1f2%28v=vs.90%29.aspx](http://msdn.microsoft.com/en-us/library/4atda1f2%28v=vs.90%29.aspx)
 
     </textarea>
 
