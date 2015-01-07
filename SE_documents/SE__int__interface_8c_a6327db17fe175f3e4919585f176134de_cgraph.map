@@ -1,0 +1,11 @@
+<map id="int_interface" name="int_interface">
+<area shape="rect" id="node2" href="$SE__fgg_8c.html#af7b68a01541104b873c1e48996883f66" title="Allocate workspace. " alt="" coords="147,31,344,57"/>
+<area shape="rect" id="node4" href="$SE__fgg_8c.html#aab7607c602ce7c1401e58634b55a9e33" title="Set array elements to double&#45;precision zero. " alt="" coords="392,56,507,83"/>
+<area shape="rect" id="node5" href="$SE__fgg_8c.html#ae736ec7648eda2c7d6e1f133ce689d94" title="Gerenrate basic params for Gaussians. " alt="" coords="161,132,330,159"/>
+<area shape="rect" id="node8" href="$SE__fgg_8c.html#a79aee6da8e435f4a25cf53e2a83e8664" title="Extend periodic function larger box. " alt="" coords="172,183,319,209"/>
+<area shape="rect" id="node10" href="$SE__fgg_8c.html#aadcb278a63bfd1d1028ccdd285896b20" title="vanilla grid gather " alt="" coords="197,233,293,260"/>
+<area shape="rect" id="node3" href="$SE__fgg_8c.html#a1139c8b424fb00a542b355f01770af13" title="SE_prod3" alt="" coords="410,5,489,32"/>
+<area shape="rect" id="node6" href="$SE__fgg_8h.html#abee636da0feeb755e9841046ac79db91" title="half" alt="" coords="428,107,471,133"/>
+<area shape="rect" id="node7" href="$SE__fgg_8h.html#a00ef5349c7aee0f91a78ac8e3b5f4645" title="is_odd" alt="" coords="555,132,615,159"/>
+<area shape="rect" id="node9" href="$SE__fgg_8c.html#a94602efceef190288aac76c25a6aab8d" title="vmod" alt="" coords="422,208,477,235"/>
+</map>

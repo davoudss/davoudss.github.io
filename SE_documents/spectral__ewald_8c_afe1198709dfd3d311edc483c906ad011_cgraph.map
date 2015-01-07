@@ -1,0 +1,51 @@
+<map id="spectral_ewald" name="spectral_ewald">
+<area shape="rect" id="node2" href="$SE__fgg_8c.html#a247fa837602841281cf6906b404ffaa0" title="SE_gettime" alt="" coords="216,5,307,32"/>
+<area shape="rect" id="node3" href="$SE__general_8c.html#a13e9bbad8a50526b46461356145336c8" title="parse_params" alt="" coords="209,56,313,83"/>
+<area shape="rect" id="node4" href="$SE__general_8c.html#a3e09b901388c9b3cbbadeb851a59a309" title="SE_FGG_FCN_params" alt="" coords="181,761,341,788"/>
+<area shape="rect" id="node7" href="$SE__fgg_8c.html#af7b68a01541104b873c1e48996883f66" title="Allocate workspace. " alt="" coords="163,224,360,251"/>
+<area shape="rect" id="node8" href="$SE__fgg_8c.html#a1139c8b424fb00a542b355f01770af13" title="SE_prod3" alt="" coords="469,145,547,172"/>
+<area shape="rect" id="node9" href="$SE__fgg_8c.html#aab7607c602ce7c1401e58634b55a9e33" title="Set array elements to double&#45;precision zero. " alt="" coords="451,196,565,223"/>
+<area shape="rect" id="node10" href="$SE__fgg_8c.html#a3659fa58aa467ba06aedf39871f4506e" title="SE_FGG_allocate_workspace\l_SSE_force" alt="" coords="163,158,360,199"/>
+<area shape="rect" id="node11" href="$SE__fgg_8c.html#a3b2cf2cd4a7d38e7f3ce6c8246c61f59" title="SE_FGG_expand_all_SSE\l_force" alt="" coords="172,377,351,418"/>
+<area shape="rect" id="node12" href="$SE__fgg_8c.html#a94db59c928a25a70d6fb1fcff352552c" title="SE_FGG_reorder_system" alt="" coords="175,325,347,352"/>
+<area shape="rect" id="node16" href="$SE__fgg_8c.html#ae736ec7648eda2c7d6e1f133ce689d94" title="Gerenrate basic params for Gaussians. " alt="" coords="177,1167,346,1193"/>
+<area shape="rect" id="node17" href="$SE__fgg_8c.html#af720c6729551ecbbc5e8d82c7abc6334" title="Generate all params for Gaussians (SSE&#45;AVX) " alt="" coords="189,559,333,585"/>
+<area shape="rect" id="node18" href="$SE__fgg_8c.html#ae0e6b7beaf2a7da76ff197b595c46c83" title="SE_FGG_grid_split_SSE\l_dispatch" alt="" coords="177,442,345,483"/>
+<area shape="rect" id="node23" href="$SE__fgg_8c.html#a92ac1866ae48350a0eac15323103bcc4" title="SE_FGG_grid_split_SSE\l_dispatch_force" alt="" coords="177,1218,345,1259"/>
+<area shape="rect" id="node28" href="$SE__fgg_8c.html#aed3b91cda90fe0257a2f0d66bdbb4036" title="vanilla grid distribute " alt="" coords="210,711,313,737"/>
+<area shape="rect" id="node29" href="$SE__fgg_8c.html#abc4cdf27d74af04ce56d45665c986081" title="Wrap H to produce periodicity. " alt="" coords="194,660,329,687"/>
+<area shape="rect" id="node31" href="$SE__general_8c.html#a062fc53b8af0e44d8ec6e3338bcdb88d" title="copy_r2c" alt="" coords="224,812,299,839"/>
+<area shape="rect" id="node32" href="$SE__general_8c.html#a98478ddacc8c8bf08448846839970e0a" title="do_fft_c2c_forward_3d" alt="" coords="184,863,339,889"/>
+<area shape="rect" id="node33" href="$SE__general_8c.html#ae330b6fbbc014e6cbe246e838f2355d1" title="k_vec" alt="" coords="233,913,290,940"/>
+<area shape="rect" id="node34" href="$SE__general_8c.html#aa487f24e51464e9eb78254e9a2adf39d" title="scaling" alt="" coords="230,964,293,991"/>
+<area shape="rect" id="node35" href="$SE__general_8c.html#a296298396b816800ed8b289cb49450d1" title="product_rc" alt="" coords="220,1015,303,1041"/>
+<area shape="rect" id="node36" href="$SE__general_8c.html#a6c047067a8ab6a7c466877556a6a7337" title="do_fft_c2c_backward_3d" alt="" coords="178,1065,345,1092"/>
+<area shape="rect" id="node37" href="$SE__general_8c.html#a75fd12871a881b347e73608421b37109" title="copy_c2r" alt="" coords="224,1116,299,1143"/>
+<area shape="rect" id="node38" href="$SE__fgg_8c.html#a79aee6da8e435f4a25cf53e2a83e8664" title="Extend periodic function larger box. " alt="" coords="188,609,335,636"/>
+<area shape="rect" id="node39" href="$SE__fgg_8c.html#a45e60d74a36c6115b24d477b3eef7540" title="SE_FGG_int_split_SSE\l_dispatch" alt="" coords="181,1386,342,1427"/>
+<area shape="rect" id="node45" href="$SE__fgg_8c.html#aadcb278a63bfd1d1028ccdd285896b20" title="vanilla grid gather " alt="" coords="213,1284,309,1311"/>
+<area shape="rect" id="node46" href="$SE__fgg_8c.html#a77964a655244e465cbb975be571fd8cd" title="Free workspace. " alt="" coords="174,1335,349,1361"/>
+<area shape="rect" id="node47" href="$SE__fgg_8c.html#acf74ad15b1c77bb7c8eadbdb024bbedd" title="SE_FGG_int_split_SSE\l_dispatch_force" alt="" coords="427,653,589,694"/>
+<area shape="rect" id="node48" href="$SE__fgg_8c.html#aa635c80a2811f0e06690cfb1c5f9d512" title="SE_FGG_free_workspace\l_SSE_force" alt="" coords="174,1451,349,1493"/>
+<area shape="rect" id="node49" href="$SE__fgg_8c.html#a24899d9bce7726e76ef56e65088d5c56" title="vanilla grid gather to calculate forces " alt="" coords="195,1517,327,1544"/>
+<area shape="rect" id="node50" href="$SE__general_8c.html#a70efdbc93a020e363d7d46833de1fa4f" title="product_sr" alt="" coords="220,1568,303,1595"/>
+<area shape="rect" id="node5" href="$SE__fgg_8h.html#abee636da0feeb755e9841046ac79db91" title="half" alt="" coords="487,800,529,827"/>
+<area shape="rect" id="node6" href="$SE__fgg_8h.html#a00ef5349c7aee0f91a78ac8e3b5f4645" title="is_odd" alt="" coords="657,856,717,883"/>
+<area shape="rect" id="node13" href="$SE__fgg_8c.html#aab18154ad774096d9fc11af0a51ab99a" title="compare_idx_pair" alt="" coords="446,247,570,273"/>
+<area shape="rect" id="node14" href="$SE__fgg_8c.html#ae02f4539e0edb921d12e11b143852595" title="SE_clone_state" alt="" coords="451,297,565,324"/>
+<area shape="rect" id="node15" href="$SE__fgg_8c.html#af4d3cc7520cb4e23f7586da6730bceb7" title="SE_free_system" alt="" coords="449,348,567,375"/>
+<area shape="rect" id="node19" href="$SE__fgg_8c.html#a716cab456b77c4428ba9850db5c53049" title="SE_FGG_grid_split" alt="" coords="441,399,575,425"/>
+<area shape="rect" id="node20" href="$SE__fgg_8c.html#a3870aefc24c79eefd5781342df266cd6" title="SE_FGG_grid_split_SSE_P16" alt="" coords="409,449,607,476"/>
+<area shape="rect" id="node21" href="$SE__fgg_8c.html#a9fe03909eb95f8f67c6633794d18eab0" title="SE_FGG_grid_split_SSE_u8" alt="" coords="413,500,603,527"/>
+<area shape="rect" id="node22" href="$SE__fgg_8c.html#a78f143a0a0cd5b2f497d1b981fa8ede9" title="SE_FGG_grid_split_SSE" alt="" coords="424,551,592,577"/>
+<area shape="rect" id="node24" href="$SE__fgg_8c.html#ad95c80ac9f53f58329450e24950b8422" title="SE_FGG_grid_split_force" alt="" coords="423,993,593,1020"/>
+<area shape="rect" id="node25" href="$SE__fgg_8c.html#a74a3c1393b87eb52cba907e9b7280af9" title="SE_FGG_grid_split_SSE\l_P16_force" alt="" coords="424,1045,592,1086"/>
+<area shape="rect" id="node26" href="$SE__fgg_8c.html#ab56c15d7e43b9e8f750a4bf9f3e6deba" title="SE_FGG_grid_split_SSE\l_u8_force" alt="" coords="424,1110,592,1151"/>
+<area shape="rect" id="node27" href="$SE__fgg_8c.html#aa6267d2e4583797a9349f89ef29c6377" title="SE_FGG_grid_split_SSE\l_force" alt="" coords="424,1175,592,1217"/>
+<area shape="rect" id="node30" href="$SE__fgg_8c.html#a94602efceef190288aac76c25a6aab8d" title="vmod" alt="" coords="481,719,535,745"/>
+<area shape="rect" id="node40" href="$SE__fgg_8c.html#a481acb04480debd7f8fec17d1b9a9283" title="SE_FGG_int_split" alt="" coords="445,1343,571,1369"/>
+<area shape="rect" id="node41" href="$SE__fgg_8c.html#a048defbb0cd77c1481f6abe7a9cf9a1d" title="SE_FGG_int_split_SSE_P8" alt="" coords="416,1393,600,1420"/>
+<area shape="rect" id="node42" href="$SE__fgg_8c.html#a819e1a0aa45bca0d2775efda2a02bd8d" title="SE_FGG_int_split_SSE_P16" alt="" coords="413,1444,603,1471"/>
+<area shape="rect" id="node43" href="$SE__fgg_8c.html#a965fd4553f9d34b8b8c2699750a1d1e8" title="SE_FGG_int_split_SSE_u8" alt="" coords="417,1495,599,1521"/>
+<area shape="rect" id="node44" href="$SE__fgg_8c.html#a2ce5c96b7a05713e16527730670b9ca8" title="SE_FGG_int_split_SSE" alt="" coords="427,1545,589,1572"/>
+</map>
