@@ -1,7 +1,0 @@
-<map id="SE_general.h" name="SE_general.h">
-<area shape="rect" id="node2" href="$SE__direct_8c.html" title="SE_direct.c" alt="" coords="5,80,96,107"/>
-<area shape="rect" id="node3" href="$SE__general_8c.html" title="SE_general.c" alt="" coords="121,80,220,107"/>
-<area shape="rect" id="node4" href="$spectral__ewald_8c.html" title="spectral_ewald.c" alt="" coords="245,80,365,107"/>
-<area shape="rect" id="node5" href="$test__accuracy_8c.html" title="test_accuracy.c" alt="" coords="389,80,504,107"/>
-<area shape="rect" id="node6" href="$testing__force_8c.html" title="testing_force.c" alt="" coords="529,80,636,107"/>
-</map>

@@ -1,8 +1,0 @@
-\form#0:$N$
-\form#1:$q_n$
-\form#2:$\bf {x}_n$
-\form#3:$\Omega=[0,L)^3$
-\form#4:$\sum_n q_n=0$
-\form#5:\[ \varphi(\bf {x}_m)=\sum_{\bf{p}}^{'}\sum_{n=1}^N\frac{q_n}{|\bf{x}_{nm,\bf{p}}|},\quad \bf{x}_{nm,\bf{p}}=\bf{x}_n-\bf{x}_m+\bf{p} L,~\bf{p}\in Z^3,\]
-\form#6:\[E=\frac{1}{2}\sum_{m=1}^Nq_m\varphi(\bf{x}_m),\]
-\form#7:\[F(\bf{x}_m)=-\frac{\partial E}{\partial \bf{x}_m}=-\frac{1}{2}q_m\frac{\partial \varphi(\bf{x}_m)}{\partial \bf{x}_m}.\]
